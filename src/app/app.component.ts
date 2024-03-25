@@ -20,6 +20,16 @@ export class AppComponent {
     })
   }
 
+  logout() {
+    if (confirm("logout?")) {
+      this.api.logout_by_token().subscribe(response => {
+        console.log('logout_by_token', response);
+        localStorage.removeItem('token');
+        console.log(localStorage);
+      })
+    }
+  }
+
 
 
 }

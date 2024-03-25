@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
@@ -34,7 +34,19 @@ export class APIcallerService {
   }
 
   login_by_token(data: any) {
-    return this.http.post(`http://127.0.0.1:8000/api-token-auth/`,data)
+    return this.http.post<any>(`http://127.0.0.1:8000/api-token-auth/`, data)
+  }
+
+  token: any;
+  headers: any;
+
+  logout_by_token() {
+    this.token = localStorage.getItem('token');
+    this.headers = new HttpHeaders({
+      "Authorization": this.token,
+    });
+
+    return this.http.get<any>(`http://127.0.0.1:8000/logout/`, { 'headers': this.headers });
   }
 
 

@@ -17,14 +17,16 @@ export class LoginComponent {
     'password': ''
   };
 
-  token: any;
+
 
   onSubmit() {
     console.log(this.data);
     this.api.login_by_token(this.data).subscribe(response => {
       console.log('login_by_token', response);
-      this.token = response;
+      localStorage.setItem('token', 'Token ' + response.token);
+      console.log(localStorage.getItem('token'));
       this.router.navigate(['']);
+
     })
 
   };
