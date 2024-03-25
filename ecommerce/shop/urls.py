@@ -1,23 +1,31 @@
+"""
+URL configuration for ecommerce project.
 
-from django.conf import settings
-from django.conf.urls.static import static
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
 from django.contrib import admin
 from django.urls import path
-
 from shop import views
 app_name = "shop"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('',views.allcategories,name="allcat"),
-    path('allproducts/<int:pk>/', views.allproducts.as_view(),name="allproducts"),  # http://127.0.0.1:8000/detail/1/
-    # path('detail/<int:pk>',views.detail.as_view(),name="detail"),
-    # path('userlogin', views.userlogin, name="userlogin"),
-    # path('register', views.register, name="register"),
-    path('logout', views.userlogout.as_view(), name="logout"),
 
+    # path('',views.allcategories.as_view(),name="allcat"),
+    path('allproducts/<int:pk>/', views.allproducts.as_view(), name="allprod"),
+    path('detail/<int:pk>/', views.detail.as_view(), name="detail"),
+    # path('register',views.register,name="register"),
+    # path('login',views.user_login,name="login"),
+    path('logout/', views.user_logout.as_view(), name="logout"),
 
 ]
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

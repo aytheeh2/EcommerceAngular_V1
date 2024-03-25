@@ -14,29 +14,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from shop import views
 from django.conf.urls.static import static
-from rest_framework.authtoken import views as rviews         #import aliasing
-
 from rest_framework.routers import SimpleRouter
+from rest_framework.authtoken import views as rviews #import aliasing
 router=SimpleRouter()
-
-router.register('cat',views.allcategories)    #path-------http://127.0.0.1:8000/shop/cat/      path koduthakunnathu    ( path('shop/',include(router.urls)),)
-router.register('detail',views.detail)          #path-------http://127.0.0.1:8000/shop/detail/1/
-router.register('user',views.CreateUser)        #path-------http://127.0.0.1:8000/shop/user/
-
+router.register('cat',views.allcategories)
+router.register('user',views.CreateUser)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('shop.urls')),
     path('search/',include('search.urls')),
     path('cart/',include('cart.urls')),
     path('shop/',include(router.urls)),
-    path('api-token-auth/',rviews.obtain_auth_token),       #login view
-
+     path('api-token-auth/',rviews.obtain_auth_token),#login view
 ]
 
 

@@ -1,31 +1,35 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
+{% block content %}<center>
+<div class="container-fluid mt-3" style="margin-bottom:100px;">
 
-{% block title %}
-Book Search
-{% endblock %}
-
-{% block content %}
+    <h5>You have Searched for {{query}}</h5></center>
+  {% if p %}
 <center>
-<h3 class="mt-4"> You have searched for {{query}}</h3>
-    {% if b %}
-    <div class="row">
-      {% for i in b %}
-<div class="col-sm-4 me-2 mb-2">
-<div class="card">
-    <img src="{{ i.image.url }}" class="card-img-top ">
+<div class="row">
+    {% for i in p %}
+    <div class="col-sm-3" style="margin-right:10px;margin-bottom:20px;">
+        <div class="card" style="width:18rem;">
+  <img src="{{i.image.url}}" height="200px" width="100%" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">{{ i.name }}</h5>
-    <p class="card-text" ></p>
-    <a href="{% url 'shop:detail' i.name %}" class="btn" style="width:100%;">{{ i.name }}</a>
+    <h5 class="card-title text-center">{{i.name}}</h5>
+       <h6 class="card-title text-center">{{i.price}}</h6>
+
+
+    <a href="{% url 'shop:detail' i.name %}" style="position:relative;left:42%;" class="btn btn-primary">Details</a>
   </div>
 </div>
-         {% endfor %}
-    {% else %}
-    <h4>No Result Found</h4>
-    {% endif %}
+    </div>{% endfor %}
 </div>
-        </div>
-</center>
 
-{% endblock %}
+</div>
+
+{% else %}
+  <h6 class="text-center">No Results Found</h6>
+  {% endif %}
+
+
+</div>
+
+</center>{% endblock %}

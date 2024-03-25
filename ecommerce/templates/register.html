@@ -1,42 +1,48 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div class="container" style="margin-bottom:100px;">
 <center>
-<h3 class="mt-4">Register Here</h3>
-<form method="POST">
-        {% csrf_token %}
+<h3 class="mt-4">Register</h3>
+
+
+
+    <form method="POST">
+
+    {% csrf_token %}
+<div class="mb-3">
+  <label  class="form-label">Username</label>
+  <input type="text" class="form-control"  name="u" placeholder="Enter the username">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Password</label>
+  <input type="password" class="form-control" name="p" placeholder="Enter the password">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Confirm Password</label>
+  <input type="password" class="form-control" name="cp" placeholder="Enter the confirm password">
+</div>
     <div class="mb-3">
-  <label class="form-label">UserName</label>
-  <input type="text" class="form-control" name="us" placeholder="Enter the username name">
-        </div>
-
+  <label  class="form-label">First name</label>
+  <input type="text" class="form-control" name="f" placeholder="Enter the firstname">
+</div>
+        <div class="mb-3">
+  <label  class="form-label">Last name</label>
+  <input type="text" class="form-control" name="l" placeholder="Enter the lastname">
+</div>
     <div class="mb-3">
-     <label class="form-label">Password</label>
-     <input type="password" class="form-control" name="ps" placeholder="Enter the password">
-            </div>
-    <div class="mb-3">
-        <labe class="from-label">Confirmation Password</labe>
-        <input type="password" class="form-control" name="cp" placeholder="Enter the confirmation password">
-            </div>
-     <div class="mb-3">
-    <label class="form-label">FirstName</label>
-    <input type="text" class="form-control" name="fn" placeholder="Enter the firstusername ">
-        </div>
+  <label  class="form-label">Email</label>
+  <input type="text" class="form-control" name="e" placeholder="Enter the email">
+</div>
 
-     <div class="mb-3">
-    <label class="form-label">LastName</label>
-    <input type="text" class="form-control" name="ln" placeholder="Enter the lastname ">
-        </div>
 
-    <div class="mb-3">
-    <label class="form-label">Email Address</label>
-    <input type="email" class="form-control" name="em" placeholder="Enter the email address ">
-        </div>
+<div class="mb-3">
 
-    <div class="mb-3">
-             <input type="submit" class="form-control" >
-        </div>
+  <input type="submit" class="form-control">
+</div>
+    </form>
+    </center>
 
-</form>
-
+</div>
 {% endblock %}

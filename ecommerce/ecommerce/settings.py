@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=rg!7k)&rg^@xw6260d$$kargd(5&egxz#vu_uv0b(p^c64dpw'
+SECRET_KEY = 'django-insecure-wh(#8^(^h&cb-oh_u2#)f)2n1hd1e-8_8o5g4^%!hz7w6rdw2o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,14 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', 'shop', 'search', 'cart', 'rest_framework', 'rest_framework.authtoken',
-    'corsheaders',
+    'django.contrib.staticfiles','shop','search','cart','rest_framework','rest_framework.authtoken','corsheaders',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
-
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,22 +49,23 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ]
 
+    ],
+# 'DEFAULT_PERMISSION_CLASSES': [
+# #         'rest_framework.permissions.IsAuthenticated',
+# #     ]
 }
-
-LOGIN_URL = "shop:userlogin"
+CORS_ORIGIN_ALLOW_ALL = True
+LOGIN_URL="shop:login"
 ROOT_URLCONF = 'ecommerce.urls'
-
+import os
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +81,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
-
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_URL='/media/'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -125,11 +125,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = "/media/"
 
 
 # Static files (CSS, JavaScript, Images)

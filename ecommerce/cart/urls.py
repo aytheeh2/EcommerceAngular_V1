@@ -14,26 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-
 from cart import views
-
-app_name='cart'
-
+app_name="cart"
 urlpatterns = [
-
-    # path('addtocart/<n>',views.addtocart,name="addtocart"), #FUNCTIN URLS
-    path('addtocart/<int:pk>/',views.addtocart.as_view(),name="addtocart"),#API VIEW URLS
-    # path('cartview',views.cartview,name="cartview"),
-    path('cartview',views.cartview.as_view(),name="cartview"),
-    path('cart_remove/<n>',views.cart_remove,name="cart_remove"),
-    path('cart_delete/<n>',views.cart_delete,name="cart_delete"),
-    path('orderform',views.orderform,name="orderform"),
-    path('orderview',views.orderview,name="orderview"),
+path('addtocart/<int:pk>/',views.Addtocart.as_view(),name="addtocart"),
+    path('cartview/',views.CartView.as_view(),name="cartview"),
+path('cart_remove/<int:pk>',views.cart_remove.as_view(),name="cart_remove"),
+path('full_remove/<int:pk>',views.Full_remove.as_view(),name="full_remove"),
+    path('orderform/',views.orderform.as_view(),name="orderform"),
+    path('orderview',views.orderview.as_view(),name="orderview"),
 ]
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
