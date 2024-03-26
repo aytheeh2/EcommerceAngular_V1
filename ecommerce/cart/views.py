@@ -71,8 +71,10 @@ class Addtocart(APIView):
                 p.stock -= 1
                 p.save()
         finally:
-            cart = Cart.objects.filter(user=u)  # Get the updated cart objects for the user
-            c = CartSerializer(cart, many=True)  # Serialize the queryset
+            # Get the updated cart objects for the user
+            cart = Cart.objects.filter(user=u)
+            c = CartSerializer(cart, many=True, context={
+                               'request': request})  # Serialize the queryset
             return Response(c.data, status=status.HTTP_201_CREATED)
 
 # @login_required
@@ -114,7 +116,13 @@ class cart_remove(APIView):
                 p.save()
         except:
             pass
-        return Response(status=status.HTTP_200_OK)
+        finally:
+            # Get the updated cart objects for the user
+            cart = Cart.objects.filter(user=u)
+            c = CartSerializer(cart, many=True, context={
+                               'request': request})  # Serialize the queryset
+            return Response(c.data, status=status.HTTP_201_CREATED)
+
 # @login_required
 # def full_remove(request,n):
 #     p=Product.objects.get(name=n)

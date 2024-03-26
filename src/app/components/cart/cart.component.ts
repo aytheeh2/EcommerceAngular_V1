@@ -18,14 +18,50 @@ export class CartComponent {
 
   cart_objects: any;
 
+  cart_total: any;
+
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get('id');
-    this.api.add_to_cart_by_id(this.productId).subscribe(res => {
-      console.log('ngOnInit of CartComponent', res);
-      console.log('added to cart');
-      this.cart_objects = res;
-      localStorage.setItem('cart_objects', this.cart_objects)
+    if (this.productId) {
+      this.api.add_to_cart_by_id(this.productId).subscribe(res => {
+        console.log('ngOnInit of CartComponent', res);
+        console.log('added to cart');
+        this.cart_objects = res;
+        localStorage.setItem('cart_objects', this.cart_objects)
+
+        this.cart_total = 0;
+        for (var i in this.cart_objects) {
+          console.log('i', this.cart_objects[i]['subtotal']);
+          this.cart_total += this.cart_objects[i]['subtotal']
+        }
+        console.log('cart_total', this.cart_total);
+
+      });
+    }
+  }
+
+  detail(id: any) {
+    this.api.get_product_details_by_id(id).subscribe(response => {
+      console.log('detail(id)', response);
+      this.router.navigate(['detail', id])
     })
+  }
+
+  add(id: any) {
+    this.api.add_to_cart_by_id(id).subscribe(res => {
+      console.log('add_to_cart_by_id', res);
+      this.cart_objects = res;
+      // this.ngOnInit();
+    })
+  }
+
+  sub(id: any) {
+    console.log(id);
+
+    this.api.sub_from_cart(id).subscribe(res => {
+      console.log('sub_from_cart', res);
+      this.cart_objects = res;
+    });
   }
 
 

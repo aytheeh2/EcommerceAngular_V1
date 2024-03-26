@@ -58,10 +58,27 @@ export class APIcallerService {
       "Authorization": this.token
     })
 
-    console.log('headers:',this.headers);
+    console.log('headers:', this.headers);
 
     return this.http.get(`http://127.0.0.1:8000/cart/addtocart/${id}/`, { headers: this.headers })
   }
+
+
+  sub_from_cart(id: any) {
+
+    this.token = localStorage.getItem('token');
+    console.log(this.token);
+
+    this.headers = new HttpHeaders({
+      "Authorization": this.token
+    })
+
+    console.log('headers:', this.headers);
+
+    return this.http.get(`http://127.0.0.1:8000/cart/cart_remove/${id}`, { headers: this.headers })
+  }
+
+
 
 
 }
