@@ -24,8 +24,9 @@ export class AppComponent {
     if (confirm("logout?")) {
       this.api.logout_by_token().subscribe(response => {
         console.log('logout_by_token', response);
-        localStorage.removeItem('token');
+        localStorage.clear();
         console.log(localStorage);
+        this.router.navigate(['']);
       })
     }
   }

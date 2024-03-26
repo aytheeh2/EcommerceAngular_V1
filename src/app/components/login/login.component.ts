@@ -23,7 +23,7 @@ export class LoginComponent {
     console.log(this.data);
     this.api.login_by_token(this.data).subscribe(response => {
       console.log('login_by_token', response);
-      localStorage.setItem('token', 'Token ' + response.token);
+      localStorage.setItem('token', 'token ' + response.token);
       console.log(localStorage.getItem('token'));
       this.router.navigate(['']);
 

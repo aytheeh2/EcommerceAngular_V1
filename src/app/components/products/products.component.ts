@@ -15,7 +15,10 @@ export class ProductsComponent {
   ) { }
 
   data: any;
-  category: any;
+  category = {
+    "name": "",
+    "image": ""
+  }
   id: any;
   ngOnInit() {
     this.id = this.active_route.snapshot.paramMap.get('id');

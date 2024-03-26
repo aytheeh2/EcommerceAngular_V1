@@ -5,6 +5,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { CartComponent } from './components/cart/cart.component';
 // Example of defining routes in Angular
 const routes: Routes = [
   { path: '', component: CategoryComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: DetailComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'cart/:id', component: CartComponent },
 ];
 
 

@@ -27,3 +27,4 @@ export class CategoryComponent {
     this.router.navigate(['product', id])
   }
 }
+

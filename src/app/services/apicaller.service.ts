@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class APIcallerService {
+
   constructor(
     public http: HttpClient,
   ) { }
@@ -47,6 +48,19 @@ export class APIcallerService {
     });
 
     return this.http.get<any>(`http://127.0.0.1:8000/logout/`, { 'headers': this.headers });
+  }
+
+  add_to_cart_by_id(id: any) {
+    this.token = localStorage.getItem('token');
+    console.log(this.token);
+
+    this.headers = new HttpHeaders({
+      "Authorization": this.token
+    })
+
+    console.log('headers:',this.headers);
+
+    return this.http.get(`http://127.0.0.1:8000/cart/addtocart/${id}/`, { headers: this.headers })
   }
 
 
