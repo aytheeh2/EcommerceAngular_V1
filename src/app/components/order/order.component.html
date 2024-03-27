@@ -1,0 +1,36 @@
+<div class="container">
+    <main>
+        <div class="row g-5 m-2 p-2 justify-content-center">
+            <p class="display-5 my-4 p-2 text-center">Place Order</p>
+            <div class="col-md-12 col-lg-8">
+                <h4 class="mb-3">Billing address</h4>
+                <form #form="ngForm" (ngSubmit)="onSubmit()" class="needs-validation" method="post">
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label for="phone" class="form-label">Account</label>
+                            <input [(ngModel)]="data.acctnum" type="text" class="form-control" id="accnum" name="acctnum"
+                                placeholder="Account Number" required>
+
+                        </div>
+                        <div class="col-12">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input [(ngModel)]="data.phone" type="text" class="form-control" id="phone" name="phone"
+                                placeholder="Phone Number" required>
+
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Address</label>
+                            <input [(ngModel)]="data.address" type="text" class="form-control" id="address"
+                                name="address" placeholder="1234 Main St" required>
+
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <input class="w-100 btn btn-primary btn-lg" type="submit">
+                </form>
+            </div>
+        </div>
+    </main>
+</div>

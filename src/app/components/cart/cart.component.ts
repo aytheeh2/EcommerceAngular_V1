@@ -89,5 +89,11 @@ export class CartComponent {
     });
   }
 
+  go_to_order() {
+    this.router.navigate(['order'])
+  }
+
+
+
 
 }

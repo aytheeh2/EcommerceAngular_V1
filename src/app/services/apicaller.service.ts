@@ -90,6 +90,22 @@ export class APIcallerService {
 
     return this.http.get(`http://127.0.0.1:8000/cart/full_remove/${id}`, { headers: this.headers })
 
+  }
+
+  orderform(data: any) {
+    this.token = localStorage.getItem('token');
+    console.log(this.token);
+
+    this.headers = new HttpHeaders({
+      "Authorization": this.token
+    });
+
+    console.log('headers:', this.headers);
+
+    console.log('data', data);
+
+
+    return this.http.post<any>(`http://127.0.0.1:8000/cart/orderform/`, data, { headers: this.headers })
 
   }
 
