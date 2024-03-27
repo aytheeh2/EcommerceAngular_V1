@@ -152,7 +152,12 @@ class Full_remove(APIView):
             p.save()
         except:
             pass
-        return Response(status=status.HTTP_200_OK)
+        finally:
+            # Get the updated cart objects for the user
+            cart = Cart.objects.filter(user=u)
+            c = CartSerializer(cart, many=True, context={
+                               'request': request})  # Serialize the queryset
+            return Response(c.data, status=status.HTTP_201_CREATED)
 # @login_required
 # def orderform(request):
 #     if(request.method=="POST"):

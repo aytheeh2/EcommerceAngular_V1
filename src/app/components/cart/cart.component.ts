@@ -31,7 +31,7 @@ export class CartComponent {
 
         this.cart_total = 0;
         for (var i in this.cart_objects) {
-          console.log('i', this.cart_objects[i]['subtotal']);
+          // console.log('i', this.cart_objects[i]['subtotal']);
           this.cart_total += this.cart_objects[i]['subtotal']
         }
         console.log('cart_total', this.cart_total);
@@ -52,6 +52,12 @@ export class CartComponent {
       console.log('add_to_cart_by_id', res);
       this.cart_objects = res;
       // this.ngOnInit();
+      this.cart_total = 0;
+      for (var i in this.cart_objects) {
+        // console.log('i', this.cart_objects[i]['subtotal']);
+        this.cart_total += this.cart_objects[i]['subtotal']
+      }
+      console.log('cart_total', this.cart_total);
     })
   }
 
@@ -61,6 +67,25 @@ export class CartComponent {
     this.api.sub_from_cart(id).subscribe(res => {
       console.log('sub_from_cart', res);
       this.cart_objects = res;
+      this.cart_total = 0;
+      for (var i in this.cart_objects) {
+        // console.log('i', this.cart_objects[i]['subtotal']);
+        this.cart_total += this.cart_objects[i]['subtotal']
+      }
+      console.log('cart_total', this.cart_total);
+    });
+  }
+
+  cart_remove(id: any) {
+    this.api.remove_item_from_cart_by_id(id).subscribe(res => {
+      console.log('remove_item_from_cart_by_id', res);
+      this.cart_objects = res;
+      this.cart_total = 0;
+      for (var i in this.cart_objects) {
+        // console.log('i', this.cart_objects[i]['subtotal']);
+        this.cart_total += this.cart_objects[i]['subtotal']
+      }
+      console.log('cart_total', this.cart_total);
     });
   }
 
